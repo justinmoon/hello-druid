@@ -5,8 +5,8 @@ use std::time::Duration;
 
 use druid::widget::{Flex, Label};
 use druid::{
-    AppDelegate, AppLauncher, Command, Data, DelegateCtx, Env, Lens, Selector,
-    Target, Widget, WidgetExt, WindowDesc,
+    AppDelegate, AppLauncher, Command, Data, DelegateCtx, Env, Lens, Selector, Target, Widget,
+    WidgetExt, WindowDesc,
 };
 
 const TICK: Selector<String> = Selector::new("tick");
@@ -19,7 +19,7 @@ pub fn resource_path(end: PathBuf) -> PathBuf {
 
 #[cfg(not(debug_assertions))]
 pub fn resource_path(end: PathBuf) -> PathBuf {
-    // Path relative to current executable for release builds
+    // Path relative_path to current executable for release builds
     match std::env::current_exe() {
         Ok(mut p) => {
             p.pop();
@@ -66,16 +66,24 @@ fn main() {
 
     thread::spawn(move || {
         loop {
+            // Executable path based on OS
+            #[cfg(target_os = "macos")]
+            let relative_path = "resources/macos/clock";
+            #[cfg(target_os = "linux")]
+            let relative_path = "resources/linux/clock";
+            #[cfg(target_os = "windows")]
+            let relative_path = "resources/windows/clock.exe";
+
             // Get current unix time by calling "clock" executable
-            let path = resource_path(PathBuf::from("resources/mac/clock"))
+            let absolute_path = resource_path(PathBuf::from(&relative_path))
                 .canonicalize()
                 .expect("couldn't build canonical path");
-            let output = process::Command::new(path)
+            let output = process::Command::new(absolute_path)
                 .output()
                 .expect("couldn't spawn clock command");
             let unix_time = String::from_utf8(output.stdout).expect("couldn't parse datetime");
 
-            // Alert GUI thread
+            // Send result to GUI thread
             sink.submit_command(TICK, unix_time, None)
                 .expect("Failed to submit command");
 
