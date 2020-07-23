@@ -1,11 +1,11 @@
 use std::path::PathBuf;
 use std::process;
 use std::thread;
-use std::time::{Duration, SystemTime};
+use std::time::Duration;
 
 use druid::widget::{Flex, Label};
 use druid::{
-    AppDelegate, AppLauncher, Command, Data, DelegateCtx, Env, ExtEventSink, Lens, Selector,
+    AppDelegate, AppLauncher, Command, Data, DelegateCtx, Env, Lens, Selector,
     Target, Widget, WidgetExt, WindowDesc,
 };
 
@@ -67,7 +67,6 @@ fn main() {
     thread::spawn(move || {
         loop {
             // Get current unix time by calling "clock" executable
-            println!("path={:?}", resource_path(PathBuf::from("resources/mac/clock")));
             let path = resource_path(PathBuf::from("resources/mac/clock"))
                 .canonicalize()
                 .expect("couldn't build canonical path");
@@ -93,7 +92,7 @@ fn main() {
 }
 
 fn ui_builder() -> impl Widget<State> {
-    let label = Label::dynamic(|data: &State, _env| data.time.clone())
+    let label = Label::dynamic(|data: &State, _env| format!("Time: {}", data.time.clone()))
         .padding(5.0)
         .center();
     Flex::column().with_child(label)

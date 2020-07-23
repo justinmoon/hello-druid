@@ -14,9 +14,7 @@ rm -rf $MACOS_APP_NAME
 rm -rf $MACOS_APP_DIR
 mkdir -p $MACOS_APP_DIR/Contents/MacOS
 
-cargo rustc \
-    --verbose \
-    --release
+cargo build --release
 
 echo "Copying binary"
 MACOS_APP_BIN=$MACOS_APP_DIR/Contents/MacOS/$MACOS_BIN_NAME
