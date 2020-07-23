@@ -1,1 +1,3 @@
-/target
+target
+macbuild
+.DS_Store
