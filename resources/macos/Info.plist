@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
   <key>CFBundleGetInfoString</key>
-  <string>HelloDruid</string>
+  <string>Hello</string>
   <key>CFBundleExecutable</key>
-  <string>hello-druid-bin</string>
+  <string>hello-bin</string>
   <key>CFBundleIdentifier</key>
   <string>com.your-company-name.www</string>
   <key>CFBundleName</key>
-  <string>hello-druid</string>
+  <string>hello</string>
   <key>CFBundleIconFile</key>
   <string>logo.icns</string>
   <key>CFBundleShortVersionString</key>
