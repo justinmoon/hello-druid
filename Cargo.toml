@@ -1,5 +1,5 @@
 [package]
-name = "hello-druid"
+name = "hello"
 version = "0.1.0"
 authors = ["Justin Moon <mail@justinmoon.com>"]
 edition = "2018"

@@ -632,7 +632,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "hello-druid"
+name = "hello"
 version = "0.1.0"
 dependencies = [
  "druid",

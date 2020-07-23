@@ -2,9 +2,9 @@
 
 set -e
 
-APP_NAME=hello-druid
-MACOS_BIN_NAME=hello-druid-bin
-MACOS_APP_NAME=HelloDruid
+APP_NAME=hello
+MACOS_BIN_NAME=hello-bin
+MACOS_APP_NAME=Hello
 MACOS_APP_DIR=$MACOS_APP_NAME.app
 
 mkdir -p macbuild
